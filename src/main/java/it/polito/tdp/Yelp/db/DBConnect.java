@@ -4,17 +4,30 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.zaxxer.hikari.HikariDataSource;
+
 public class DBConnect {
 
+	static private HikariDataSource ds = null;
+	static private String url = "jdbc:mysql://localhost:3306/yelp";
+
 	public static Connection getConnection() {
-		String url = "jdbc:mysql://localhost:3306/yelp?user=root&password=root";
-		try {
-			Connection conn = DriverManager.getConnection(url);
-			return conn ;
-		} catch (SQLException e) {
-			System.out.println("ERRORE di connessione al database");
-			e.printStackTrace();
-			return null ;
+
+		if (ds == null) { // Singleton
+			// crea nuova data source
+			ds = new HikariDataSource();
+			ds.setJdbcUrl(url);
+			ds.setUsername("root");
+			ds.setPassword("root");
 		}
+
+		try {
+			return ds.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+
 	}
 }

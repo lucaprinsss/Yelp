@@ -53,6 +53,7 @@ public class YelpDAO {
 		String sql = "SELECT AVG(stars) AS avg_stars, COUNT(*) AS number "
 				+ "FROM reviews "
 				+ "WHERE business_id = ?";
+//		String sql = "SELECT 1 as avg_stars";
 		Connection conn = DBConnect.getConnection();
 		try {
 			PreparedStatement st = conn.prepareStatement(sql);
