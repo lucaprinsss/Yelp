@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class FXMLController { //finito
+public class FXMLController { //finito e rinominato
 	
 	private Model model ;
 
